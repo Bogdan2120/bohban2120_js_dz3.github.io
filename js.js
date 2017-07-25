@@ -1,16 +1,18 @@
 console.log("Connected");
 
-const arrey = [1,2,3];
+const arrey = [];
 const parent = document.querySelector('.arr');
+var objArrey = {
+    arr : document.querySelector('#arr'),
+    index : document.querySelector('#index'),
+    newArr : document.querySelector('#newarr'),
 
-const arr = document.querySelector('#arr').value;
-const index = document.querySelector('#index').value;
-const newArr = document.querySelector('#newarr').value;
+    buttonOk : document.querySelector('.ok'),
+    buttonPop : document.querySelector('.pop'),
+    buttonShift : document.querySelector('.shift'),
+    buttonPush : document.querySelector('.push')
+}
 
-const buttonOk = document.querySelector('.ok');
-const buttonPop = document.querySelector('.pop');
-const buttonShift = document.querySelector('.shift');
-const buttonPush = document.querySelector('.push');
 
 function showResultInDOM(parentDOM, tagString, text) {
    let elem = document.createElement(tagString);
@@ -18,9 +20,9 @@ function showResultInDOM(parentDOM, tagString, text) {
    parentDOM.appendChild(elem);
 }
 
-function addArrey() {
-   arrey[index] = arr;
-   conclusionArrey();
+
+function setElemToArray(value, index, arr) {
+   value[index] = arr;
 }
 
 function conclusionArrey() {
@@ -31,15 +33,19 @@ for (var i = 0; i < arrey.length; i++) {
 showResultInDOM(parent, 'p', res);
 }
 
-buttonOk.addEventListener('click', addArrey());
+function conclusionRes() {
+    setElemToArray(arrey, objArrey.index.value, objArrey.arr.value);
+    conclusionArrey();
+}
+objArrey.buttonOk.addEventListener('click', conclusionRes);
 
 
 function popArrey() {
-    arrey.pop();
+    arrey.pop(); 
     conclusionArrey();
 }
 
-buttonPop.addEventListener('click', popArrey);
+objArrey.buttonPop.addEventListener('click', popArrey);
 
 
 function shiftArrey() {
@@ -47,12 +53,12 @@ function shiftArrey() {
     conclusionArrey();
 }
 
-buttonShift.addEventListener('click', shiftArrey);
+objArrey.buttonShift.addEventListener('click', shiftArrey);
 
 
 function pushArrey() {
-    arrey.push(newArr);
+    arrey.push(objArrey.newArr.value);
     conclusionArrey();
 }
 
-buttonPush.addEventListener('click', pushArrey);
+objArrey.buttonPush.addEventListener('click', pushArrey);
